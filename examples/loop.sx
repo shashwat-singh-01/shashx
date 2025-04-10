@@ -1,9 +1,3 @@
-@i = 0;
-flp i < 3 {
-  pf("flp i = " > i);
-  i = i + 1;
-}
-
 @j = 0;
 wlp j < 2 {
   pf("wlp j = " > j);

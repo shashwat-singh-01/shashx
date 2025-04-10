@@ -34,64 +34,6 @@ export function parse(tokens) {
                 if (tokens[current]?.value === ';') current++;
                 return { type: 'VarDeclaration', name, value };
             }
-            // flp and wlp loops
-            if (token.type === 'KEYWORD' && (token.value === 'flp' || token.value === 'wlp')) {
-                const kind = token.value;
-                current++;
-
-                const condition = parseExpression();
-
-                if (tokens[current]?.value !== '{') {
-                    throw new Error('Expected { after loop condition');
-                }
-                current++; // skip '{'
-
-                const body = [];
-                while (tokens[current]?.value !== '}') {
-                    body.push(walk());
-                }
-                current++; // skip '}'
-
-                return {
-                    type: 'LoopStatement',
-                    kind,
-                    condition,
-                    body
-                };
-            }
-
-            // dlp loop
-            if (token.type === 'KEYWORD' && token.value === 'dlp') {
-                const kind = token.value;
-                current++;
-
-                if (tokens[current]?.value !== '{') {
-                    throw new Error('Expected { after dlp');
-                }
-                current++; // skip '{'
-
-                const body = [];
-                while (tokens[current]?.value !== '}') {
-                    body.push(walk());
-                }
-                current++; // skip '}'
-
-                // expect wlp keyword after }
-                if (tokens[current]?.type !== 'KEYWORD' || tokens[current]?.value !== 'wlp') {
-                    throw new Error('Expected wlp after dlp body');
-                }
-                current++; // skip wlp
-
-                const condition = parseExpression();
-                if (tokens[current]?.value === ';') current++;
-
-                return {
-                    type: 'LoopStatement',
-                    kind,
-                    condition,
-                    body
-                };
-            }
 
             throw new Error(`Unexpected token in primary: ${JSON.stringify(token)}`);
         }
@@ -114,7 +56,7 @@ export function parse(tokens) {
             return left;
         }
 
-        // pf() parsing
+        // pf() function
         if (token.type === 'KEYWORD' && token.value === 'pf') {
             current++; // skip pf
             if (tokens[current].value !== '(') throw new Error('Expected (');
@@ -136,7 +78,79 @@ export function parse(tokens) {
             return { type: 'PrintStatement', arguments: args };
         }
 
-        // if-elf-el chain
+        // flp loop: flp i = 0 to 3 { ... }
+        if (token.type === 'KEYWORD' && token.value === 'flp') {
+            current++; // skip 'flp'
+
+            const loopVar = tokens[current].value;
+            current++;
+
+            if (tokens[current].value !== '=') throw new Error("Expected '=' after flp loop variable");
+            current++;
+
+            const start = parseExpression();
+
+            if (tokens[current].value !== 'to') throw new Error("Expected 'to' in flp loop");
+            current++;
+
+            const end = parseExpression();
+
+            if (tokens[current].value !== '{') throw new Error("Expected '{' to start flp body");
+            current++;
+
+            const body = [];
+            while (tokens[current]?.value !== '}') {
+                body.push(walk());
+            }
+            current++; // skip '}'
+
+            return { type: 'FlpLoop', loopVar, start, end, body };
+        }
+
+        // wlp loop: wlp condition { ... }
+        if (token.type === 'KEYWORD' && token.value === 'wlp') {
+            current++; // skip 'wlp'
+            const condition = parseExpression();
+
+            if (tokens[current].value !== '{') throw new Error("Expected '{' after wlp condition");
+            current++;
+
+            const body = [];
+            while (tokens[current]?.value !== '}') {
+                body.push(walk());
+            }
+            current++; // skip '}'
+
+            return { type: 'LoopStatement', kind: 'wlp', condition, body };
+        }
+
+        // dlp loop: dlp { ... } wlp condition;
+        if (token.type === 'KEYWORD' && token.value === 'dlp') {
+            const kind = token.value;
+            current++;
+
+            if (tokens[current]?.value !== '{') throw new Error('Expected { after dlp');
+            current++; // skip '{'
+
+            const body = [];
+            while (tokens[current]?.value !== '}') {
+                body.push(walk());
+            }
+            current++; // skip '}'
+
+            // expect wlp after }
+            if (tokens[current]?.type !== 'KEYWORD' || tokens[current].value !== 'wlp') {
+                throw new Error('Expected wlp after dlp body');
+            }
+            current++;
+
+            const condition = parseExpression();
+            if (tokens[current]?.value === ';') current++;
+
+            return { type: 'LoopStatement', kind, condition, body };
+        }
+
+        // if-elf-el
         if (token.type === 'KEYWORD' && token.value === 'if') {
             const branches = [];
 
@@ -157,7 +171,7 @@ export function parse(tokens) {
                 branches.push({ kind, condition, body });
             }
 
-            // Check for optional `el`
+            // Optional el
             if (tokens[current]?.value === 'el') {
                 current++;
                 if (tokens[current]?.value !== '{') throw new Error('Expected {');
@@ -167,7 +181,7 @@ export function parse(tokens) {
                 while (tokens[current]?.value !== '}') {
                     body.push(walk());
                 }
-                current++; // skip '}'
+                current++;
 
                 branches.push({ kind: 'el', condition: null, body });
             }
@@ -184,11 +198,7 @@ export function parse(tokens) {
             return { type: 'Assignment', name, value };
         }
 
-        // Variable declaration
-        if (token.type === 'VAR_DECL') {
-            return parsePrimary();
-        }
-
+        // Fallback to expression
         return parseExpression();
     }
 

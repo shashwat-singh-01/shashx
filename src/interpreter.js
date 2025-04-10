@@ -34,7 +34,6 @@ export function run(ast) {
                 const left = evaluate(node.left);
                 const right = evaluate(node.right);
 
-                // Handle '>' operator in print context (string concat)
                 if (typeof left === 'string' || typeof right === 'string') {
                     if (node.operator === '>') {
                         return String(left) + String(right);
@@ -85,6 +84,19 @@ export function run(ast) {
                             evaluate(stmt);
                         }
                     } while (evaluate(node.condition));
+                }
+                break;
+            }
+
+            case 'FlpLoop': {
+                const loopVar = node.loopVar;
+                const start = evaluate(node.start);
+                const end = evaluate(node.end);
+
+                for (env[loopVar] = start; env[loopVar] < end; env[loopVar]++) {
+                    for (const stmt of node.body) {
+                        evaluate(stmt);
+                    }
                 }
                 break;
             }

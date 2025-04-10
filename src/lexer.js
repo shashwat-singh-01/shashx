@@ -11,7 +11,8 @@ export function tokenize(code) {
         .join('\n');
 
     // 🧠 Step 2: Tokenize cleaned code
-    const regex = /\s*([@a-zA-Z_][a-zA-Z0-9_]*|\d+|"[^"]*"|==|!=|<=|>=|[=<>!{}();+\-*/]|pf|if|elf|el|flp|wlp|dlp|>|\(|\))\s*/g;
+    const regex = /\s*([@a-zA-Z_][a-zA-Z0-9_]*|\d+|"[^"]*"|==|!=|<=|>=|[=<>!{}();+\-*/]|pf|if|elf|el|flp|wlp|dlp|to|>|\(|\))\s*/g;
+
     let match;
 
     while ((match = regex.exec(cleanedCode)) !== null) {
