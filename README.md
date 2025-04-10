@@ -75,27 +75,29 @@ pf(>y)
 #### ➰ For Loop (`flp`)
 
 ```shashx
-flp i = 0 to 3
-  pf("flp i = " >i)
+flp @i = 0 to 3{
+  pf("flp i = " >i);
+}
 ```
 
 #### 🔁 While Loop (`wlp`)
 
 ```shashx
-@j = 0
-wlp j < 2
-  pf("wlp j = " >j)
-  @j = j + 1
+@j = 0;
+wlp j < 2 {
+  pf("wlp j = " > j);
+  j = j + 1;
+}
 ```
 
 #### 🔁 Do-While Loop (`dlp`)
 
 ```shashx
-@k = 0
-dlp
-  pf("dlp k = " >k)
-  @k = k + 1
-until k >= 2
+@k = 0;
+dlp {
+  pf("dlp k = " > k);
+  k = k + 1;
+} wlp k < 2;
 ```
 
 ### 🔂 Conditional Statements
