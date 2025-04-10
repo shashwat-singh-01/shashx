@@ -4,40 +4,36 @@
   </a>
 </p>
 
-
-
 <h1 align="center">🚀 shashx</h1>
 <p align="center"><strong>A lightweight, dynamically-typed interpreted language built for simplicity and learning.</strong></p>
 
-
-
 ---
 
-## 📖 What is shashx?
+## 📖 What is `shashx`?
 
 **`shashx`** is a custom-designed, educational programming language developed by [Shashwat Singh](https://github.com/shashwat-singh-01), focusing on simplicity, clean syntax, and powerful learning potential.
 
-- 🔤 Inspired by modern scripting languages
-- 🧠 Created to understand how interpreters, tokenizers, and parsers work
+- 🔤 Inspired by modern scripting languages  
+- 🧠 Created to understand how interpreters, tokenizers, and parsers work  
 - 🧪 Perfect for experimenting with language design
 
 ---
 
 ## ✨ Features
 
-- ✅ Dynamically typed
-- ✅ Interpreted (no compilation needed)
-- ✅ Custom clean syntax
-- ✅ Supports variables, loops, conditionals, and print statements
-- ✅ Built with JavaScript (Node.js)
-- ✅ CLI-based execution
-- ✅ VS Code syntax highlighting extension
+✅ Dynamically typed  
+✅ Interpreted (no compilation needed)  
+✅ Custom clean syntax  
+✅ Supports variables, loops, conditionals, and print statements  
+✅ Built with JavaScript (Node.js)  
+✅ CLI-based execution  
+✅ VS Code syntax highlighting extension  
 
 ---
 
 ## 📦 Installation
 
-### 1. **Install via NPM (Recommended)**
+### ✅ Install via NPM (Recommended)
 
 ```bash
 npm install -g shashx
@@ -49,7 +45,7 @@ npm install -g shashx
 
 ## 🏃 How to Run a `.sx` File
 
-1. Create a file with the `.sx` extension, e.g., `hello.sx`
+1. Create a file with the `.sx` extension, e.g., `hello.sx`  
 2. Run it using the CLI:
 
 ```bash
@@ -61,13 +57,11 @@ shashx path/to/hello.sx
 ## 🧠 Syntax Guide
 
 ### ➕ Print Statement
-
 ```shashx
 pf("Hello, World!")
 ```
 
 ### 📦 Variable Declaration
-
 ```shashx
 @x = 10
 @y = 20
@@ -78,15 +72,13 @@ pf(>y)
 ### 🔁 Loops
 
 #### ➰ For Loop (`flp`)
-
 ```shashx
-flp @i = 0 to 3{
+flp @i = 0 to 3 {
   pf("flp i = " >i);
 }
 ```
 
 #### 🔁 While Loop (`wlp`)
-
 ```shashx
 @j = 0;
 wlp j < 2 {
@@ -96,7 +88,6 @@ wlp j < 2 {
 ```
 
 #### 🔁 Do-While Loop (`dlp`)
-
 ```shashx
 @k = 0;
 dlp {
@@ -106,7 +97,6 @@ dlp {
 ```
 
 ### 🔂 Conditional Statements
-
 ```shashx
 @x = 10
 if x > 5
@@ -129,16 +119,15 @@ You can get the extension here:
 👉 [shashx-lang on Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=shashwat-sx.shashx-lang)
 
 ### 🎨 Features
-
-- Syntax highlighting
-- File recognition (`.sx`)
-- Friendly editing experience
+- Syntax highlighting  
+- File recognition (`.sx`)  
+- Friendly editing experience  
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash
 shashx-lang/
 ├── bin/
 │   └── shashx.bat         # CLI batch file
@@ -159,9 +148,9 @@ shashx-lang/
 
 Want to improve `shashx`?
 
-1. 🍴 Fork the repo
-2. 🛠️ Make changes
-3. 📩 Open a PR
+1. 🍴 Fork the repo  
+2. 🛠️ Make changes  
+3. 📩 Open a PR  
 
 Bug reports, ideas, and suggestions are always welcome!
 
@@ -185,7 +174,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE)
 ---
 
 <p align="center"><strong>💡 Start building with shashx today and explore the internals of a real language interpreter!</strong></p>
-```
-
----
-
