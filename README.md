@@ -1,3 +1,8 @@
+<p align="right">
+  <a href="https://shashwat-singh-01.github.io/shashx_Documentation/" target="_blank">
+    <img src="https://img.shields.io/badge/📄%20Documentation-View%20Now-blue?style=for-the-badge" alt="Documentation">
+  </a>
+</p>
 
 
 
