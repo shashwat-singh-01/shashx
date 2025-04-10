@@ -1,0 +1,12 @@
+~> This is a comment
+@a = 10;
+
+if a > 15 {
+  pf("a is greater than 15");
+}
+elf a == 10 {
+  pf("a is exactly 10");
+}
+el {
+  pf("a is less than 10");
+}

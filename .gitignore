@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vscode/
+*.log
+*.vsix
+*.DS_Store
+npm-debug.log*
+.env

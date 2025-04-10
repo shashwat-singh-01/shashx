@@ -1,0 +1,17 @@
+@i = 0;
+flp i < 3 {
+  pf("flp i = " > i);
+  i = i + 1;
+}
+
+@j = 0;
+wlp j < 2 {
+  pf("wlp j = " > j);
+  j = j + 1;
+}
+
+@k = 0;
+dlp {
+  pf("dlp k = " > k);
+  k = k + 1;
+} wlp k < 2;

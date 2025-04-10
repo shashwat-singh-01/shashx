@@ -1,0 +1,61 @@
+{
+  "name": "shashx",
+  "displayName": ".sx",
+  "description": "A beginner-friendly interpreted programming language built for learning and fun 🚀",
+  "version": "1.0.2",
+  "icon": "sx.png",
+  "publisher": "shashwat-sx",
+  "main": "main.js",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "shashx",
+        "aliases": ["shashx", "shashx"],
+        "extensions": [".sx"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "shashx",
+        "scopeName": "source.shashx",
+        "path": "./syntaxes/shashx.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shashwat-singh-01/shashx"
+  },
+  "bin": {
+    "shashx": "./bin/shashx.bat"
+  },
+  "keywords": [
+    "shashx",
+    "programming-language",
+    "interpreter",
+    "cli",
+    "custom-language"
+  ],
+  "author": "Shashwat Singh",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "src",
+    "main.js",
+    "bin",
+    "examples",
+    "sx.png"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
