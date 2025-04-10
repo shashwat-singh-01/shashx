@@ -6,3 +6,4 @@ dist/
 *.DS_Store
 npm-debug.log*
 .env
+shashx-lang-1.0.2.vsix
